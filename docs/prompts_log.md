@@ -4,8 +4,6 @@ This file tracks all the AI interactions I had during the assessment.
 
 ---
 
-## Day 1 - (19/6/2026)
-
 ### Prompt 1: Initial Problem Sort Outing
 
 **Asked to:** MiniMax
@@ -74,5 +72,29 @@ to exclude data/, venv/, **pycache**/
 **What I got:** Identified relative path issue which needed to be updated as ../data/ prefix
 **Did it work?** Yes. Fixed by updating paths and moving files
 **Modified?** Documented as engineering decision for the report
+
+### Prompt 8: Price Column Type Discovery
+
+**Asked to:** MiniMax
+**What I asked:** "Why does AVG(price) fail with binder error?"
+**Got:** Explanation that price is VARCHAR due to "$" prefix
+**Did it work?** Yes. Used CAST(REPLACE()) pattern
+**Modified:** Created reusable `listings_clean` view
+
+### Prompt 9: View Creation Failure
+
+**Asked to:** MiniMax  
+**What I asked:** "Why can't I CREATE VIEW in DuckDB?"
+**Got:** Database was opened in read_only mode
+**Did it work?** Yes. I reconnected without read_only=True
+**Modified:** Now using normal connection throughout
+
+### Prompt 10: Duplicate Detection Strategy
+
+**Asked to:** MiniMax
+**What I asked:** "How do I detect fuzzy duplicates?"
+**Got:** Query that groups by name+neighbourhood+price+host
+**Did it work?** Yes. Found 10 groups of suspected duplicates
+**Modified:** Documented that these are likely multi-unit commercial properties, not true duplicates
 
 ---
