@@ -152,7 +152,7 @@
 ### Exact Duplicates (by ID):
 
 - **Total duplicate IDs: 0**
-- ✅ Dataset has no exact duplicates — primary key integrity maintained
+- Dataset has no exact duplicates — primary key integrity maintained
 
 ### Fuzzy Duplicates (same name + neighbourhood + host + price):
 
@@ -182,15 +182,15 @@
 
 ## 6. Geographic Validation
 
-| Metric            | Value  | Status                 |
-| ----------------- | ------ | ---------------------- |
-| Min latitude      | 51.296 | ✅ Within London range |
-| Max latitude      | 51.682 | ✅ Within London range |
-| Min longitude     | -0.498 | ✅ Within London range |
-| Max longitude     | 0.296  | ✅ Within London range |
-| Invalid latitude  | 0      | ✅ None                |
-| Invalid longitude | 0      | ✅ None                |
-| Zero coordinates  | 0      | ✅ None                |
+| Metric            | Value  | Status              |
+| ----------------- | ------ | ------------------- |
+| Min latitude      | 51.296 | Within London range |
+| Max latitude      | 51.682 | Within London range |
+| Min longitude     | -0.498 | Within London range |
+| Max longitude     | 0.296  | Within London range |
+| Invalid latitude  | 0      | None                |
+| Invalid longitude | 0      | None                |
+| Zero coordinates  | 0      | None                |
 
 **Assessment:** All 96,182 listings have valid London coordinates. No geographic data quality issues.
 
@@ -285,6 +285,63 @@
 | Consistency  | 6/10     | Price format inconsistent (text)       |
 | Accuracy     | 8/10     | Extreme outliers suggest some bad data |
 | **Overall**  | **8/10** | **Production-ready with cleaning**     |
+
+---
+
+## 12. Column Cardinality Profile
+
+### High Cardinality (Mostly Unique)
+
+| Column      | Unique Values | Implication                                  |
+| ----------- | ------------- | -------------------------------------------- |
+| listing_url | 98,230        | Each listing has unique URL (expected)       |
+| id          | 96,863        | Nearly 1:1 with rows (expected)              |
+| name        | 91,251        | Most listings have unique names              |
+| description | 79,747        | High variation (free text)                   |
+| longitude   | 64,309        | Continuous (geographic spread)               |
+| latitude    | 58,571        | Continuous (geographic spread)               |
+| host_id     | 60,625        | Many listings per host (multi-listing hosts) |
+
+### Medium Cardinality (Categorical-like)
+
+| Column                 | Unique Values | Implication                        |
+| ---------------------- | ------------- | ---------------------------------- |
+| host_name              | 14,341        | Multiple hosts share names         |
+| host_since             | 5,400         | Date range (signup dates)          |
+| first_review           | 4,966         | Date range                         |
+| last_review            | 3,810         | Date range                         |
+| property_type          | 112           | Manageable categories              |
+| neighbourhood_cleansed | 37            | Geocoded categories — **USE THIS** |
+| room_type              | 4             | Matches dictionary exactly         |
+
+### Low Cardinality (Boolean-like)
+
+| Column            | Unique Values | Implication                                 |
+| ----------------- | ------------- | ------------------------------------------- |
+| source            | 2             | "previous scrape" or "neighbourhood search" |
+| host_is_superhost | 2             | Boolean                                     |
+| instant_bookable  | 2             | Boolean                                     |
+| room_type         | 4             | Expected categories                         |
+
+### Zero Cardinality (All NULL)
+
+| Column                       | Implication                            |
+| ---------------------------- | -------------------------------------- |
+| neighbourhood_group_cleansed | NYC-specific, not applicable to London |
+| calendar_updated             | Calendar feature not used              |
+| license                      | UK doesn't require                     |
+
+### Data Type Findings
+
+- **Price:** Stored as VARCHAR (needs cleaning) — 1,261 unique values
+- **Host response/acceptance rate:** Stored as VARCHAR (likely "100%", "95%") — needs parsing
+- **Date columns:** Properly typed as DATE
+- **Score columns:** Properly typed as DOUBLE
+- **Boolean columns:** Properly typed
+
+### Recommendation
+
+**Use `neighbourhood_cleansed` instead of `neighbourhood`** for analysis — it has 0% nulls and is geocoded (more accurate).
 
 ---
 
