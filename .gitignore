@@ -20,3 +20,8 @@ Thumbs.db
 # IDE
 .vscode/
 .idea/
+
+# DuckDB
+*.db
+*.db.wal
+*.db-journal
