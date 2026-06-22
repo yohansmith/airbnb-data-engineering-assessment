@@ -1,6 +1,6 @@
 # AI Prompts Log
 
-This file tracks all the AI interactions I had during the assessment.
+This file tracks all the meaningful AI interactions I had during the assessment.
 
 ---
 
@@ -98,3 +98,51 @@ to exclude data/, venv/, **pycache**/
 **Modified:** Documented that these are likely multi-unit commercial properties, not true duplicates
 
 ---
+
+### Prompt 11: TRY_CAST vs CAST Decision
+
+**Asked to:** MiniMax
+**What I asked:** "Why does CAST fail on host_response_rate with 'N/A' values?"
+**Got:** Explanation that TRY_CAST returns NULL instead of erroring
+**Did it work?** Yes, used TRY_CAST throughout cleaning
+**Modified?** All transformations now use TRY_CAST for safety
+
+### Prompt 12: Data Loss Debugging
+
+**Asked to:** MiniMax
+**What I asked:** "Why did listings_final only have 63,151 rows instead of 96,182?"
+**Got:** Diagnosed that 32,977 listings had NULL price in source data; our capping added 54 more
+**Did it work?** Yes, rebuilt with explicit NULL handling and NO_PRICE flag
+**Modified?** Added validation cell to match counts against quality report
+
+### Prompt 13: Property Type Categorization
+
+**Asked to:** MiniMax
+**What I asked:** "How to group 112 property types into meaningful categories?"
+**Got:** CASE statement with ILIKE pattern matching for apartment/house/hotel/etc.
+**Did it work?** Yes, reduced to 9 categories covering all listings
+**Modified?** Used ELSE 'Other' for edge cases
+
+### Prompt 14: Cleaning Cell Structure
+
+**Asked to:** MiniMax
+**What I asked:** "Can we split the cleaning into multiple cells for readability?"
+**Got:** Yes, break into 8-10 cells, one per task
+**Did it work?** Yes, much easier to read and debug
+**Modified?** Each cell has markdown explanation above code
+
+### Prompt 15: NULL Price Decision
+
+**Asked to:** MiniMax
+**What I asked:** "Should we delete listings with NULL price or keep them?"
+**Got:** Keep NULLs, filter in analysis — NULL is valid business state
+**Did it work?** Yes, preserved 32,977 NULLs with NO_PRICE flag
+**Modified?** Documented decision in markdown cell
+
+### Prompt 16: Threshold Justification
+
+**Asked to:** MiniMax
+**What I asked:** "Why $5,000 and $10 thresholds? Are these arbitrary?"
+**Got:** Acknowledged they're judgment calls, not statistical
+**Did it work?** Yes, documented as engineering decision with rationale
+**Modified?** Added to decisions_log.md

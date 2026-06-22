@@ -87,3 +87,99 @@
 **Trade-offs accepted:**
 
 - Slight query overhead (negligible for our dataset size)
+
+---
+
+## Decision 6: Property Type Standardization
+
+**Options considered:**
+
+- A) Keep 112 unique values
+- B) Group into categories (Apartment, House, Hotel, etc.)
+
+**Chose:** Option B (9 categories)
+
+**Reasoning:**
+
+- 112 values too granular for meaningful analysis
+- Grouped using ILIKE pattern matching (apartment/flat/condo → Apartment)
+- 9 categories cover ~99% of listings meaningfully
+
+**Trade-offs accepted:**
+
+- Loss of granularity (e.g., "luxury apartment" vs "studio apartment")
+- Some listings may be mis-categorized at edges
+
+---
+
+## Decision 7: Price Outlier Thresholds
+
+**Options considered:**
+
+- A) Fixed thresholds ($5,000 high, $10 low)
+- B) IQR method (Q3 + 1.5×IQR)
+- C) Z-score method (mean ± 3×std)
+
+**Chose:** Option A (fixed thresholds)
+
+**Reasoning:**
+
+- $5,000 is above realistic London luxury max
+- $10 catches obvious data errors
+- Simple to explain to non-technical stakeholders
+- IQR would also work but harder to defend without statistics background
+
+**Trade-offs accepted:**
+
+- Not statistically rigorous
+- 47 listings above $5K excluded (verified as all outliers)
+- 7 listings below $10 excluded (all clearly errors)
+
+---
+
+## Decision 8: Cleaning Approach (Single-Pass vs Chained)
+
+**Options considered:**
+
+- A) Multiple chained CREATE OR REPLACE statements
+- B) Single CREATE TABLE AS SELECT (one-pass)
+
+**Chose:** Option B (single-pass, then split into readable cells)
+
+**Reasoning:**
+
+- Chained approach caused data loss (33K rows disappeared)
+- Single-pass is auditable in one query
+- Split into multiple cells for readability vs one massive cell
+
+**Trade-offs accepted:**
+
+- Slightly longer cells
+- Must re-run entire cell if one transformation changes
+
+---
+
+## Decision 9: NULL Handling Strategy
+
+**Strategy:** Preserve NULLs, don't impute or delete
+
+**Rationale:**
+
+- NULLs often represent valid business states:
+  - New listings without price set
+  - Hosts not yet evaluated for superhost
+  - Listings without reviews yet
+- Deleting would bias analysis toward established listings
+- Imputation would invent fake data
+
+**Implementation:**
+
+- 32,977 NULL prices preserved with 'NO_PRICE' flag
+- 50,520 NULL neighbourhoods resolved via neighbourhood_cleansed fallback
+- NULL review scores preserved (new listings)
+- NULL host_is_superhost → 'unknown' status (distinct from 'f')
+
+**Trade-offs accepted:**
+
+- Some analyses need explicit WHERE filters
+- Summary statistics must handle NULL explicitly
