@@ -183,3 +183,51 @@
 
 - Some analyses need explicit WHERE filters
 - Summary statistics must handle NULL explicitly
+
+---
+
+## Decision 10: Modeling Trade-offs
+
+### Star Schema vs Normalized (3NF)
+
+**Chose:** Star schema  
+**Reasoning:**
+
+- Optimized for analytical queries (OLAP use case)
+- Simpler joins (fewer tables to traverse)
+- Standard for data warehousing (Snowflake, BigQuery use this)
+
+**Trade-offs accepted:**
+
+- Some data redundancy (neighbourhood name repeated in fact table)
+- Not suitable for transactional workloads (OLTP)
+
+### Surrogate Keys vs Natural Keys
+
+**Chose:** Hybrid (natural for host, surrogate for location/property)  
+**Reasoning:**
+
+- host_id is already a stable natural key
+- Neighbourhood names can be renamed/corrected (surrogate protects from this)
+- Property combinations are derived (surrogate simplifies joins)
+
+**Trade-offs accepted:**
+
+- More complex ETL (must generate surrogate keys)
+- Extra lookup needed for surrogate keys
+
+### Slowly Changing Dimensions (SCD)
+
+**Chose:** Type 1 SCD (overwrite)  
+**Reasoning:**
+
+- Single snapshot of data (no history to preserve)
+- Simpler implementation
+- Appropriate for this assessment
+
+**Trade-offs accepted:**
+
+- Cannot track historical changes to host/location/property attributes
+- Would need Type 2 SCD for full history tracking
+
+---
