@@ -97,8 +97,6 @@ to exclude data/, venv/, **pycache**/
 **Did it work?** Yes. Found 10 groups of suspected duplicates
 **Modified:** Documented that these are likely multi-unit commercial properties, not true duplicates
 
----
-
 ### Prompt 11: TRY_CAST vs CAST Decision
 
 **Asked to:** MiniMax
@@ -187,4 +185,34 @@ to exclude data/, venv/, **pycache**/
 **Did it work?** Yes, Value (4.62) and Cleanliness (4.65) flagged as weak
 **Modified?** Added actionable insights for each weakness
 
----
+### Prompt 22: H3 Counterintuitive Direction
+
+**Asked to:** MiniMax
+**What I asked:** "Why do high-review listings have LOWER prices?"
+**Got:** Explanation: budget listings get more reviews (higher turnover)
+**Did it work?** Yes, led to "popularity ≠ expensiveness" insight
+**Modified?** Highlighted as key counterintuitive finding in report
+
+### Prompt 23: VIF Values Unexpected
+
+**Asked to:** MiniMax
+**What I asked:** "Why are VIFs so high (65 for review_scores_rating)?"
+**Got:** Dummy variable trap explanation — using 2 dummies for 3 categories
+**Did it work?** Yes, documented as methodology limitation
+**Modified?** Kept model for interpretation, flagged VIF issues
+
+### Prompt 24: Interpreting Effect Sizes
+
+**Asked to:** MiniMax
+**What I asked:** "Is d=0.454 for H2 considered Small or Medium?"
+**Got:** Small-to-Medium per Cohen's guidelines (0.2-0.5 = Small, 0.5-0.8 = Medium)
+**Did it work?** Yes, corrected my initial "Small" interpretation
+**Modified?** Updated business interpretation accordingly
+
+### Prompt 25: LOWESS Interpretation
+
+**Asked to:** MiniMax
+**What I asked:** "What does a flat LOWESS curve tell us?"
+**Got:** No non-linear relationship — linear model is appropriate
+**Did it work?** Yes, confirmed simple regression is valid
+**Modified?** Documented this as justification for not using complex models

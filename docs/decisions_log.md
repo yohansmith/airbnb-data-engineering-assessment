@@ -347,3 +347,53 @@
 - Less "production-ready" appearance
 - Code is split across 5 notebooks rather than modular
 - Acceptable for intern-level assessment
+
+---
+
+## Decision 14: Statistical Test Selection
+
+**Options considered:**
+
+- A) Parametric tests only (t-test, ANOVA)
+- B) Non-parametric tests only (Mann-Whitney, Kruskal-Wallis)
+- C) Both — check assumptions then choose
+
+**Chose:** Option C (hybrid approach)
+
+**Reasoning:**
+
+- Price data is known to be heavily skewed (Section 4.1 finding)
+- Assumption checking with Shapiro-Wilk + Levene's tests is best practice
+- When assumptions fail → use non-parametric backup
+- Demonstrates methodological rigor (rubric: 20% statistical thinking)
+
+**Trade-offs accepted:**
+
+- More code/complexity
+- Longer execution time
+- Multiple tests per hypothesis (but both reported)
+
+---
+
+## Decision 15: OLS Regression Handling of Multicollinearity
+
+**Options considered:**
+
+- A) Remove high-VIF variables immediately
+- B) Document VIF issues but keep model for interpretation
+- C) Use Ridge/Lasso regularization
+
+**Chose:** Option B (document and interpret cautiously)
+
+**Reasoning:**
+
+- High VIF (65.18 for review_scores_rating) is real but explainable
+- Dummy variable trap is well-understood — coefficients still directionally valid
+- Removing variables loses business interpretability
+- Goal is understanding drivers, not pure prediction
+
+**Trade-offs accepted:**
+
+- Individual p-values for high-VIF variables may be unreliable
+- Coefficient magnitudes may be inflated
+- Documented as limitation in final report
