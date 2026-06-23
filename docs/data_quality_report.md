@@ -409,3 +409,69 @@
 | Unavailable listings  | Flag (not delete)          | Keep for reference                |
 | Property type         | Group to 9 categories      | Enables analysis                  |
 | Coordinate precision  | 5 decimals                 | ~1 meter accuracy                 |
+
+---
+
+---
+
+## 17. Exploratory Data Analysis Summary (Section 4)
+
+### Visualizations Created
+
+| #   | Chart                               | Section | Key Finding                                          |
+| --- | ----------------------------------- | ------- | ---------------------------------------------------- |
+| 01  | Price distribution histogram        | 4.1     | Right-skewed, median £130, long luxury tail          |
+| 02  | Price by room type (boxplot)        | 4.1     | Hotel rooms premium, entire homes 2.5x private rooms |
+| 03  | Top 15 neighborhoods by count       | 4.2     | Westminster dominates with 10,713 listings           |
+| 04  | Top 15 most expensive neighborhoods | 4.2     | Kensington & Chelsea leads at £304/night             |
+| 05  | Review volume over time             | 4.3     | COVID recovery, 5x growth since 2020                 |
+| 06  | Listings per host (power law)       | 4.4     | Most hosts have 1 listing (casual)                   |
+| 07  | Review score distribution           | 4.5     | Rating inflation — 80% score 4.5+                    |
+| 08  | Price vs review score (scatter)     | 4.5     | No price-quality correlation                         |
+| 09  | Availability_365 distribution       | 4.1     | Bimodal — most listings at 0 or 365 days             |
+| 10  | Superhost pricing comparison        | 4.4     | All superhost statuses price similarly (~£175)       |
+| 11  | Market supply concentration         | 4.4     | Even split between casual and commercial hosts       |
+| 12  | Host tenure distribution            | 4.3     | Veteran hosts (10+ years) are largest segment        |
+| 13  | Review sub-dimension performance    | 4.5     | Communication highest (4.82), Value lowest (4.62)    |
+
+### Key Business Insights
+
+1. **Market Structure:** Bimodal - casual hosts (1 listing) vs commercial operators (20+)
+2. **Location Premium:** Central London commands 2x outer borough prices
+3. **Quality vs Price:** No correlation - higher price ≠ higher rating
+4. **Operational Weakness:** Cleanliness (4.65) and Value (4.62) are host pain points
+5. **Growth Signal:** Review volume 5x increase since 2020 indicates strong demand recovery
+
+---
+
+## 18. Updated Data Quality Score (Post-EDA)
+
+| Category                | Before     | After EDA  |
+| ----------------------- | ---------- | ---------- |
+| Completeness            | 9/10       | 9/10       |
+| Uniqueness              | 10/10      | 10/10      |
+| Validity                | 10/10      | 10/10      |
+| Consistency             | 9/10       | 9/10       |
+| Accuracy                | 9/10       | 9/10       |
+| **Analytical Richness** | N/A        | 9/10       |
+| **Overall**             | **9.5/10** | **9.5/10** |
+
+---
+
+## 19. Visualization Index
+
+All visualizations saved to `reports/figures/`:
+
+- 01_price_distribution.png
+- 02_price_by_room_type.png
+- 03_listings_by_neighborhood.png
+- 04_price_by_neighborhood.png
+- 05_review_trend.png
+- 06_listings_per_host.png
+- 07_review_scores.png
+- 08_price_vs_reviews.png
+- 09_availability_distribution.png
+- 10_superhost_pricing.png
+- 11_market_concentration.png
+- 12_host_tenure.png
+- 13_review_subdimensions.png

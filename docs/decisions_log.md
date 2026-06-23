@@ -231,3 +231,119 @@
 - Would need Type 2 SCD for full history tracking
 
 ---
+
+---
+
+## Decision 10: EDA Scope (Section 4)
+
+**Options considered:**
+
+- A) Minimal EDA (4-5 basic charts)
+- B) Comprehensive EDA (13+ charts covering all subsections)
+
+**Chose:** Option B (comprehensive)
+
+**Reasoning:**
+
+- Section 4 has 5 subsections with 20+ requirements
+- Business interpretation requirement applies to ALL findings
+- Each chart demonstrates analytical thinking (rubric: 20% storytelling)
+
+**Trade-offs accepted:**
+
+- More time investment (~6 hours)
+- Some charts have overlapping insights (acceptable for completeness)
+
+---
+
+## Decision 11: Outlier Visualization Strategy
+
+**Options considered:**
+
+- A) Remove outliers from visualizations
+- B) Include outliers with clear flagging
+- C) Cap outliers and visualize both views
+
+**Chose:** Option B (include with flagging)
+
+**Reasoning:**
+
+- Real-world data engineers must handle outliers, not hide them
+- Outliers often tell important business stories (commercial operators, luxury segment)
+- Brief explicitly asks to "identify outliers" — they should be visible
+
+**Trade-offs accepted:**
+
+- Charts may have long tails that compress main distribution
+- Required explicit `price <= 1000` cap on some charts for readability
+
+---
+
+---
+
+## Decision 11: EDA Scope
+
+**Options considered:**
+
+- A) Minimal EDA (4-5 basic charts)
+- B) Comprehensive EDA (13+ charts covering all subsections)
+
+**Chose:** Option B (comprehensive)
+
+**Reasoning:**
+
+- Section 4 has 5 subsections with 20+ requirements
+- Business interpretation requirement applies to ALL findings
+- Each chart demonstrates analytical thinking (rubric: 20% storytelling)
+
+**Trade-offs accepted:**
+
+- More time investment (~6 hours)
+- Some charts have overlapping insights (acceptable for completeness)
+
+---
+
+## Decision 12: Outlier Visualization Strategy
+
+**Options considered:**
+
+- A) Remove outliers from visualizations
+- B) Include outliers with clear flagging
+- C) Cap outliers and visualize both views
+
+**Chose:** Option B (include with flagging)
+
+**Reasoning:**
+
+- Real-world data engineers must handle outliers, not hide them
+- Outliers often tell important business stories (commercial operators, luxury segment)
+- Brief explicitly asks to "identify outliers" — they should be visible
+
+**Trade-offs accepted:**
+
+- Charts may have long tails that compress main distribution
+- Required explicit `price <= 1000` cap on some charts for readability
+
+---
+
+## Decision 13: Skip src/ and tests/ Folders
+
+**Options considered:**
+
+- A) Create full src/ with reusable modules + tests/
+- B) Skip both folders, keep all code in notebooks
+
+**Chose:** Option B (skip)
+
+**Reasoning:**
+
+- src/ and tests/ not in mandatory deliverables (Section 11.1)
+- Not required by any rubric criteria
+- Time better spent on Final Report (20-page PDF)
+- Notebooks ARE the code delivery for this assessment
+
+**Trade-offs accepted:**
+
+- Less "production-ready" appearance
+- Code is split across 5 notebooks rather than modular
+- Acceptable for intern-level assessment

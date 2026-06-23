@@ -146,3 +146,45 @@ to exclude data/, venv/, **pycache**/
 **Got:** Acknowledged they're judgment calls, not statistical
 **Did it work?** Yes, documented as engineering decision with rationale
 **Modified?** Added to decisions_log.md
+
+### Prompt 17: EDA Chart Selection Strategy
+
+**Asked to:** MiniMax
+**What I asked:** "How many charts do I need for Section 4 EDA?"
+**Got:** Recommended 12-15 charts covering all 5 subsections
+**Did it work?** Yes, produced 13 charts total
+**Modified?** Added business interpretation markdown cells after each chart
+
+### Prompt 18: Availability Distribution Interpretation
+
+**Asked to:** MiniMax
+**What I asked:** "Why is the availability distribution bimodal?"
+**Got:** Explained 0 = booked/blocked, 365 = commercial operators, middle = rare
+**Did it work?** Yes, clear business interpretation
+**Modified?** Added action items for hosts, investors, platform
+
+### Prompt 19: Superhost Pricing Anomaly
+
+**Asked to:** MiniMax
+**What I asked:** "Why don't superhosts charge more?"
+**Got:** Explained superhost = quality signal, not price signal
+**Did it work?** Yes, clarified that quality ≠ pricing power
+**Modified?** Added insight about platform incentive design
+
+### Prompt 20: Market Concentration Metric
+
+**Asked to:** MiniMax
+**What I asked:** "How to measure market concentration by host category?"
+**Got:** GROUP BY calculated_host_listings_count with CASE statement
+**Did it work?** Yes, created 4-tier host segmentation
+**Modified?** Added interpretation that casual vs commercial is near-even split
+
+### Prompt 21: Review Sub-Dimension Comparison
+
+**Asked to:** MiniMax
+**What I asked:** "How to interpret which sub-dimension is weakest?"
+**Got:** Look for largest gap between best and worst scores
+**Did it work?** Yes, Value (4.62) and Cleanliness (4.65) flagged as weak
+**Modified?** Added actionable insights for each weakness
+
+---
