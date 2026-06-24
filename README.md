@@ -9,7 +9,6 @@ Submitted as part of the Expernetic Data Engineer Intern technical assessment.
 
 - [Project Overview](#project-overview)
 - [Repository Structure](#repository-structure)
-- [Review Order (Read This First)](#review-order)
 - [Setup Instructions](#setup-instructions)
 - [Execution Guide](#execution-guide)
 - [Documentation Files](#documentation-files)
@@ -76,28 +75,6 @@ airbnb-data-engineering-assessment/
     ├── processed/                     ← Cleaned parquet files (gitignored)
     └── airbnb.db                      ← DuckDB database (gitignored)
 ```
-
----
-
-## Review Order
-
-**If you have limited time, follow this priority order:**
-
-| Priority | Artifact                                          | Time Required | What You'll Learn                     |
-| -------- | ------------------------------------------------- | ------------- | ------------------------------------- |
-| 1        | `reports/final_report.pdf`                        | 30 min        | Complete findings and recommendations |
-| 2        | `reports/figures/` (skim all 15 charts)           | 10 min        | Visual evidence supporting the report |
-| 3        | `notebooks/05_eda_visualizations.ipynb`           | 15 min        | How the visualizations were generated |
-| 4        | `notebooks/06_statistical_analysis.ipynb`         | 15 min        | Full statistical methodology          |
-| 5        | `notebooks/04_data_enrichment_and_modeling.ipynb` | 10 min        | Star schema implementation            |
-| 6        | `docs/data_quality_report.md`                     | 5 min         | Data quality assessment               |
-| 7        | `docs/decisions_log.md`                           | 5 min         | Engineering rationale                 |
-| 8        | `notebooks/01-03`                                 | Optional      | Full data engineering pipeline        |
-
-**Total time for complete review:** ~2 hours  
-**Time for essential review:** ~45 minutes
-
----
 
 ## Setup Instructions
 
