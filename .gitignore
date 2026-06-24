@@ -1,27 +1,101 @@
 # Large data files
 data/raw/*.csv
 data/raw/*.csv.gz
+data/raw/*.geojson
+data/raw/*.json
 data/processed/*.parquet
 data/processed/*.csv
+data/processed/*.json
+
+# DuckDB database files
+*.db
+*.db-wal
+*.db-journal
+data/airbnb.db
+data/airbnb.db.wal
+data/airbnb.db-journal
 
 # Python
 __pycache__/
-*.pyc
+*.py[cod]
+*$py.class
+*.so
+.Python
 venv/
+env/
+.venv/
+env.bak/
+venv.bak/
+*.egg
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.mypy_cache/
+.ruff_cache/
+
+# Secrets and credentials
 .env
+*.env
+.env.local
+.env.production
+.env.development
+config.ini
+config.yaml
+secrets.yaml
+secrets.json
+credentials.json
+credentials.csv
+*.key
+*.pem
+*.p12
+*.pfx
+*.password
 
-# Jupyter
+# Jupyter Notebook checkpoints
 .ipynb_checkpoints/
+*/.ipynb_checkpoints/
 
-# OS
-.DS_Store
-Thumbs.db
-
-# IDE
+# IDE and editor files
 .vscode/
 .idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+ehthumbs.db
+$RECYCLE.BIN/
 
-# DuckDB
-*.db
-*.db.wal
-*.db-journal
+# Logs
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Temporary and backup files
+*.tmp
+*.bak
+*.backup
+*.old
+*.orig
+*.rej
+*.pid
+*.seed
+*.pid.lock
+
+# Environment-specific
+.env.bak
+.env.local
+.env.*.local
+
+# Large notebook outputs
+# *.html
+# *.json
